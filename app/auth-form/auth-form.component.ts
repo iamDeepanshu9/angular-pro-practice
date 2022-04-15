@@ -1,4 +1,13 @@
-import {Component, Output, EventEmitter,ViewChild,AfterViewInit,AfterContentInit,QueryList, ContentChildren} from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  AfterViewInit,
+  AfterContentInit,
+  QueryList,
+  ContentChildren,
+  ViewChildren
+} from '@angular/core';
 
 import { AuthRememberComponent } from './auth-remember.component';
 import {AuthMessageComponent} from "./auth-message.component";
@@ -20,6 +29,8 @@ import { User } from './auth-form.interface';
         </label>
         <ng-content select="auth-remember"></ng-content>
         <auth-message [style.display]="(showMessage ? 'inherit' : 'none')"></auth-message>
+        <auth-message [style.display]="(showMessage ? 'inherit' : 'none')"></auth-message>
+        <auth-message [style.display]="(showMessage ? 'inherit' : 'none')"></auth-message>
         <ng-content select="button"></ng-content>
       </form>
     </div>
@@ -31,19 +42,19 @@ export class AuthFormComponent implements AfterContentInit,AfterViewInit {
 
   @ContentChildren(AuthRememberComponent) remember:QueryList<AuthRememberComponent>;
 
-  @ViewChild(AuthMessageComponent) message : AuthMessageComponent;
+  @ViewChildren(AuthMessageComponent) message : QueryList<AuthMessageComponent>;
 
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
 
   ngAfterViewInit() {
-    // this.message.days = 30; // give error of inline changing that cant change after view init
+    if(this.message) {
+      setTimeout(() => {
+        this.message.forEach((message) => message.days = 30)
+      })
+    }
   }
 
   ngAfterContentInit() {
-    if(this.message)
-    {
-      this.message.days = 90;
-    }
 
     if (this.remember) {
       this.remember.forEach((item)=> {
