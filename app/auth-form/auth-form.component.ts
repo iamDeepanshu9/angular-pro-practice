@@ -15,6 +15,10 @@ import { User } from './auth-form.interface';
 
 @Component({
   selector: 'auth-form',
+  styles:[`
+  .email{
+   border-color: #9f72e6;
+  }`],
   template: `
     <div>
       <form (ngSubmit)="onSubmit(form.value)" #form="ngForm">
@@ -49,7 +53,9 @@ export class AuthFormComponent implements AfterContentInit,AfterViewInit {
   constructor(private cd : ChangeDetectorRef) {}
 
   ngAfterViewInit() {
-  this.email.nativeElement.setAttribute('placeholder','Enter Your Email Address')
+  this.email.nativeElement.setAttribute('placeholder','Enter Your Email Address');
+  this.email.nativeElement.classList.add('email');
+  this.email.nativeElement.focus();
     if(this.message)
     {
       this.message.forEach((message)=>message.days = 30)
