@@ -56,7 +56,7 @@ export class AuthFormComponent implements AfterContentInit,AfterViewInit {
 
   ngAfterViewInit() {
     this.renderer.setElementAttribute(this.email.nativeElement,'placeholder','Enter your email pataa');
-
+    this.renderer.setElementClass(this.email.nativeElement,"email",true);
   // this.email.nativeElement.setAttribute('placeholder','Enter Your Email Address');
   // this.email.nativeElement.classList.add('email');
   // this.email.nativeElement.focus();
