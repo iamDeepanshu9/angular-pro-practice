@@ -49,7 +49,7 @@ export class AuthFormComponent implements AfterContentInit,AfterViewInit {
   constructor(private cd : ChangeDetectorRef) {}
 
   ngAfterViewInit() {
-    console.log(this.email);
+  this.email.nativeElement.setAttribute('placeholder','Enter Your Email Address')
     if(this.message)
     {
       this.message.forEach((message)=>message.days = 30)
