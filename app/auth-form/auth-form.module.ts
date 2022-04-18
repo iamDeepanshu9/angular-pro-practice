@@ -10,7 +10,7 @@ import {AuthMessageComponent} from "./auth-message.component";
   declarations: [
     AuthFormComponent,
     AuthRememberComponent,
-    AuthMessageComponent
+    AuthMessageComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +20,9 @@ import {AuthMessageComponent} from "./auth-message.component";
     AuthFormComponent,
     AuthRememberComponent,
     AuthMessageComponent
+  ],
+  entryComponents:[
+    AuthFormComponent
   ]
 })
 export class AuthFormModule {}
