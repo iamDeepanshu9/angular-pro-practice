@@ -19,13 +19,19 @@ import {read} from "fs";
   template: `
     <div>
       <ng-container
-        [ngTemplateOutlet]="tmpl">
+        [ngTemplateOutlet]="tmpl"
+        [ngTemplateOutletContext]="ctx">
       </ng-container>
-      <template #tmpl>
-          Deepanshu : Ghaziabad
+      <template #tmpl let-name let-location='location'>
+          {{name}} : {{location}}
       </template>
     </div>
   `
 })
 export class AppComponent{
+  ctx = {
+    $implicit : 'Deepanshu Kumar',
+    location : ' Alhanpur Atlakheri '
+  };
+  // declaretive way to do this
 }
