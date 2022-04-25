@@ -19,8 +19,8 @@ import {read} from "fs";
   template: `
     <div>
       <div #entry ></div>
-      <template #tmpl>
-        Deepanshu Kumar : Ghaziabad
+      <template #tmpl let-name let-location = "location">
+          {{name}} : {{location}}
       </template>
     </div>
   `
@@ -29,7 +29,11 @@ export class AppComponent implements AfterContentInit{
 
   @ViewChild('entry',{read : ViewContainerRef}) entry : ViewContainerRef;
   @ViewChild('tmpl') tmpl : TemplateRef<any>;
+
   ngAfterContentInit() {
-    this.entry.createEmbeddedView(this.tmpl);
+    this.entry.createEmbeddedView(this.tmpl,{
+      $implicit : 'Deepanshu Kumar',
+      location : 'Saharanpur , UP '
+    });
   }
 }
